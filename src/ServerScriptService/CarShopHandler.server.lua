@@ -125,26 +125,25 @@ BuyCar.OnServerInvoke = function(player, carId)
     local newList = getOwnedList(player)
     OwnedCarsUpdated:FireClient(player, newList)
 
-    -- ── Spawn the car (optional) ──────────────────────────────────────────────
-    -- If you have actual car models with a valid modelId, uncomment the block below.
-    --
-    -- if car.modelId and car.modelId ~= 0 then
-    --     local success, model = pcall(function()
-    --         return game:GetService("InsertService"):LoadAsset(car.modelId)
-    --     end)
-    --     if success and model then
-    --         local vehicle = model:FindFirstChildWhichIsA("Model")
-    --         if vehicle then
-    --             local spawnPos = player.Character and
-    --                 player.Character:FindFirstChild("HumanoidRootPart") and
-    --                 player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, -10)
-    --                 or Vector3.new(0, 5, 0)
-    --             vehicle:SetPrimaryPartCFrame(CFrame.new(spawnPos))
-    --             vehicle.Parent = workspace
-    --         end
-    --         model:Destroy()
-    --     end
-    -- end
+    -- ── Spawn the car ─────────────────────────────────────────────────────────
+    if car.modelId and car.modelId ~= 0 then
+        local insertService = game:GetService("InsertService")
+        local loadOk, model = pcall(function()
+            return insertService:LoadAsset(car.modelId)
+        end)
+        if loadOk and model then
+            local vehicle = model:FindFirstChildWhichIsA("Model")
+            if vehicle then
+                local spawnPos = Vector3.new(0, 5, 0)
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    spawnPos = player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, -10)
+                end
+                vehicle:SetPrimaryPartCFrame(CFrame.new(spawnPos))
+                vehicle.Parent = workspace
+            end
+            model:Destroy()
+        end
+    end
 
     return {
         success   = true,
