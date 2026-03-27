@@ -9,6 +9,10 @@
             "MoneySystem": {
                 "$className": "Script",
                 "$path": "src/ServerScriptService/MoneySystem.server.lua"
+            },
+            "NascarTrack": {
+                "$className": "Script",
+                "$path": "src/ServerScriptService/NascarTrack.server.lua"
             }
         },
 
