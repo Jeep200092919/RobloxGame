@@ -401,14 +401,14 @@ end
 
 -- ── Remote event listeners ────────────────────────────────────────────────────
 
-MoneyUpdated:Connect(function(amount)
+MoneyUpdated.OnClientEvent:Connect(function(amount)
     currentMoney = amount
     moneyLabel.Text  = "💰  $" .. tostring(amount)
     panelMoney.Text  = "Your balance:  $" .. tostring(amount)
     refreshAllCards()
 end)
 
-OwnedCarsUpdated:Connect(function(list)
+OwnedCarsUpdated.OnClientEvent:Connect(function(list)
     ownedCars = {}
     for _, carId in ipairs(list) do
         ownedCars[carId] = true
