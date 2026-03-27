@@ -1,0 +1,54 @@
+{
+    "name": "RobloxCarGame",
+    "tree": {
+        "$className": "DataModel",
+
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+
+            "MoneySystem": {
+                "$className": "Script",
+                "$path": "src/ServerScriptService/MoneySystem.server.lua"
+            },
+            "CarShopHandler": {
+                "$className": "Script",
+                "$path": "src/ServerScriptService/CarShopHandler.server.lua"
+            }
+        },
+
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+
+            "CarData": {
+                "$className": "ModuleScript",
+                "$path": "src/ReplicatedStorage/CarData.lua"
+            },
+
+            "Remotes": {
+                "$className": "Folder",
+
+                "BuyCar": {
+                    "$className": "RemoteFunction"
+                },
+                "GetMoney": {
+                    "$className": "RemoteFunction"
+                },
+                "MoneyUpdated": {
+                    "$className": "RemoteEvent"
+                },
+                "OwnedCarsUpdated": {
+                    "$className": "RemoteEvent"
+                }
+            }
+        },
+
+        "StarterGui": {
+            "$className": "StarterGui",
+
+            "CarShopGui": {
+                "$className": "LocalScript",
+                "$path": "src/StarterGui/CarShopGui.client.lua"
+            }
+        }
+    }
+}
